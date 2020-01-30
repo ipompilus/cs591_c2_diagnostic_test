@@ -7,6 +7,11 @@ from project.server import bcrypt, db
 from project.server.models import User
 
 auth_blueprint = Blueprint('auth', __name__)
+
+class HomeAPI(MethodView):
+    def get(self):
+        return make_response("CS591 Assignment 1 - Ian Pompilus")
+
 class IndexAPI(MethodView):
     def get(self):
         users = User.query.all()
@@ -72,8 +77,14 @@ class RegisterAPI(MethodView):
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
 index_view = IndexAPI.as_view('index_api')
+home_view = HomeAPI.as_view('home_api')
 
 # add Rules for API Endpoints
+auth_blueprint.add_url_rule(
+    '/',
+    view_func=home_view,
+    methods=['GET']
+)
 auth_blueprint.add_url_rule(
     '/auth/register',
     view_func=registration_view,
