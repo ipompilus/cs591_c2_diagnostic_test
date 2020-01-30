@@ -1,4 +1,4 @@
-# project/server/auth/views.py
+2# project/server/auth/views.py
 
 from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
@@ -83,5 +83,5 @@ auth_blueprint.add_url_rule(
 auth_blueprint.add_url_rule(
     '/user/index',
     view_func=index_view,
-    methods=['POST', 'GET']
+    methods=['GET']
 )
